@@ -9,7 +9,7 @@ open XPlot.GoogleCharts.Deedle
 open RProvider
 
 let octoberFirst = new DateTime(2016,1,1)
-let octoberDays = [for i in 1..31 -> octoberFirst.AddDays(float (i-1)]
+let octoberDays = [for i in 1..31 -> octoberFirst.AddDays(float (i-1))]
                    
 let isWorkingDay (date:DateTime) =
   let weekday = date.DayOfWeek
@@ -22,7 +22,7 @@ let ts = List.zip workingDays [for v in 1..(Seq.length workingDays) -> float v] 
 let noWednesdays = ts |> Series.filter (fun d v -> d.DayOfWeek <> DayOfWeek.Wednesday)
     
 // Reintroduce the missing Wednesdays keys, but the series has a 'missing' value for these
-let missingWednesdays = noWednesdays |> Series.realign octoberDays
+let missingWednesdays = noWednesdays |> Series.realign workingDays
 
 
 // Fill a missing value with the midpoint between the values before and after
@@ -30,8 +30,11 @@ let midpointFill (key:'k) (before:('k*float) option) (after:('k*float) option) =
     match before, after with
     | Some (k1,v1), Some (k2,v2) -> (v1 + v2)/2.0
 
-let interpolated = missingWednesdays |> Stats.interpolate octoberDays midpointFill 
+let interpolated =
+    missingWednesdays |> Stats.interpolate workingDays midpointFill 
 
-
+// Note: the above is equivalent to using linear interpolation with equidistant keys
+let interpolatedLinear =
+    missingWednesdays |> Stats.interpolateLinear workingDays (fun d1 d2 -> 1.0)
 
 
