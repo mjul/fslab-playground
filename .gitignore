@@ -1,0 +1,6 @@
+.paket/
+packages/
+obj/
+*.exe
+*.dll
+
