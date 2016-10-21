@@ -38,3 +38,14 @@ let interpolatedLinear =
     missingWednesdays |> Stats.interpolateLinear workingDays (fun d1 d2 -> 1.0)
 
 
+// Realign to all days of the month: data for weekends will be missing
+
+let missingWeekends = ts |> Series.realign octoberDays
+
+// Here the weekend values will be interpolated linearly between the Friday and Monday values
+let everyDayLinearlyInterpolated =
+    missingWeekends
+    |> Stats.interpolateLinear octoberDays (fun d1 d2 -> (d2.Subtract(d1)).TotalDays)
+
+// Note that we could have packed the realingment into the
+// last statement as it takes the octoberDays as an argument.
