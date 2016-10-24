@@ -52,6 +52,7 @@
     <None Include="Tutorial.fsx" />
     <None Include="Timeseries.fsx" />
     <None Include="BrownianMotionChart.fsx" />
+    <None Include="RIntegration.fsx" />
   </ItemGroup>
   <PropertyGroup>
     <MinimumVisualStudioVersion Condition="'$(MinimumVisualStudioVersion)' == ''">11</MinimumVisualStudioVersion>
