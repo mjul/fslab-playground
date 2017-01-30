@@ -38,18 +38,24 @@ let lineChart title ts =
 let chart = valueSeries |> lineChart "Stock Price"
 
 
-let dailyReturns (ts : Series<DateTime,float>)  =
+let absoluteReturns (ts : Series<DateTime,float>)  =
+    // The return since the previous observation
+    // E.g. comparing today's Close to yesterday's Close 
     ts |> Series.diff 1
 
-let relativeDailyReturns ts =
-    Series.zipInner ts (dailyReturns ts)
+
+let relativeReturns ts =
+    let previousDayValues = ts |> Series.shift 1
+    Series.zipInner previousDayValues (absoluteReturns ts)
     |> Series.mapValues (fun (v,r) -> r/v)
 
+
+
 let absReturnsChart =
-    dailyReturns valueSeries |> lineChart "Absolute Daily Returns" 
+    absoluteReturns valueSeries |> lineChart "Absolute Daily Returns" 
 
 let relReturnsChart =
-    relativeDailyReturns valueSeries |> lineChart  "Relative Daily Returns"
+    relativeReturns valueSeries |> lineChart  "Relative Daily Returns"
 
 
 let durationInYears (ts:Series<DateTime,'v>) =
@@ -79,6 +85,7 @@ let annualisedStandardDeviation ts =
     |> sqrt
 
 
+
 let lastNYears n (ts : Series<DateTime,float>) =
     let lastDay = ts |> Series.lastKey
     let firstDay = lastDay.AddYears(-n).AddDays(1.0)
@@ -94,8 +101,8 @@ let normalizeSeries ts =
 
 
 let threeYearValues = valueSeries |> lastThreeYears |> normalizeSeries
-let threeYearReturns = threeYearValues |> dailyReturns
-let threeYearRelativeReturns = threeYearValues |> relativeDailyReturns
+let threeYearReturns = threeYearValues |> absoluteReturns
+let threeYearRelativeReturns = threeYearValues |> relativeReturns
     
 (* Chart some data *)
 
@@ -118,3 +125,62 @@ let c3reldist =
 let absStd = threeYearReturns |> annualisedStandardDeviation 
 let relStd = threeYearRelativeReturns |> annualisedStandardDeviation
 printfn "Standard deviation:  (absolute): %.3f p.a.    (relative): %.3f%% p.a." absStd (100.0*relStd)
+
+
+
+let firstDayOfMonth (dt:DateTime) =
+    new DateTime(dt.Year, dt.Month, 1)
+
+let lastDayOfMonth (dt:DateTime) =
+    (new DateTime(dt.Year, dt.Month, 1)).AddMonths(1).AddDays(-1.0)
+
+let resampleDates dateBucketFn ts =
+    ts
+    |> Series.keys
+    |> Seq.map dateBucketFn
+    |> Set.ofSeq
+    |> Seq.sort
+    
+// Months are represented by first day of month
+let firstDayOfMonthValues ts =
+    let firstDayOfMonths = resampleDates firstDayOfMonth ts
+    ts
+    |> Series.resample firstDayOfMonths Direction.Forward
+    |> Series.mapValues Series.firstValue 
+
+// Months are represented by the first day of the month
+let lastDayOfMonthValues ts =
+    let firstDayOfMonths = resampleDates firstDayOfMonth ts
+    ts
+    |> Series.resample firstDayOfMonths Direction.Forward
+    |> Series.mapValues Series.lastValue 
+
+
+let geometricMean (xs:float seq) =
+    let sumOfLogs = xs |> Seq.map (fun x -> abs (log x)) |> Seq.sum
+    let n = Seq.length xs
+    exp (sumOfLogs/(float n))
+
+
+// We need 37 months of prices to get 36 months of returns
+let last37Months = valueSeries |> lastDayOfMonthValues |> Series.takeLast (36+1)
+let lastThreeYearRelativeReturns = last37Months |> relativeReturns
+let lastThreeYearRelativeReturn =
+    let first = last37Months |> Series.firstValue
+    let last = last37Months |> Series.lastValue
+    last/first
+
+let lastThreeYearGeometricMeanMonthlyReturn =
+    Math.Pow(lastThreeYearRelativeReturn, 1.0/36.0) - 1.0
+
+let sigmaMonthly = lastThreeYearRelativeReturns |> Stats.stdDev
+let sigmaAnnual = (sqrt 12.0) * sigmaMonthly
+
+let stdDevGeomMonthly =
+    lastThreeYearRelativeReturns
+    |> Series.values
+    |> Seq.sumBy (fun x -> pown (x-lastThreeYearGeometricMeanMonthlyReturn) 2)
+    |> sqrt
+    |> sqrt
+    
+let stdDevGeomAnnual =  stdDevGeomMonthly / (sqrt 12.0)
