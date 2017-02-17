@@ -1,0 +1,252 @@
+{
+  "data": {
+    "type": "finansraadetForecast",
+    "attributes": {
+      "end_year": 2046,
+      "start_year": 2017,
+      "forecasts": [
+        {
+          "opening_balance": 100000,
+          "gross_return": 3400,
+          "year": 2017,
+          "net_return": 2195,
+          "fees": 1205,
+          "closing_balance": 102195
+        },
+        {
+          "opening_balance": 102195,
+          "gross_return": 3495,
+          "year": 2018,
+          "net_return": 2259,
+          "fees": 1236,
+          "closing_balance": 104455
+        },
+        {
+          "opening_balance": 104455,
+          "gross_return": 3593,
+          "year": 2019,
+          "net_return": 2326,
+          "fees": 1268,
+          "closing_balance": 106780
+        },
+        {
+          "opening_balance": 106780,
+          "gross_return": 3695,
+          "year": 2020,
+          "net_return": 2394,
+          "fees": 1300,
+          "closing_balance": 109175
+        },
+        {
+          "opening_balance": 109175,
+          "gross_return": 5883,
+          "year": 2021,
+          "net_return": 4523,
+          "fees": 1359,
+          "closing_balance": 113698
+        },
+        {
+          "opening_balance": 113698,
+          "gross_return": 6154,
+          "year": 2022,
+          "net_return": 4733,
+          "fees": 1421,
+          "closing_balance": 118431
+        },
+        {
+          "opening_balance": 118431,
+          "gross_return": 6439,
+          "year": 2023,
+          "net_return": 4953,
+          "fees": 1485,
+          "closing_balance": 123385
+        },
+        {
+          "opening_balance": 123385,
+          "gross_return": 6737,
+          "year": 2024,
+          "net_return": 5184,
+          "fees": 1553,
+          "closing_balance": 128569
+        },
+        {
+          "opening_balance": 128569,
+          "gross_return": 7051,
+          "year": 2025,
+          "net_return": 5427,
+          "fees": 1624,
+          "closing_balance": 133995
+        },
+        {
+          "opening_balance": 133995,
+          "gross_return": 7380,
+          "year": 2026,
+          "net_return": 5681,
+          "fees": 1699,
+          "closing_balance": 139676
+        },
+        {
+          "opening_balance": 139676,
+          "gross_return": 7725,
+          "year": 2027,
+          "net_return": 5948,
+          "fees": 1777,
+          "closing_balance": 145624
+        },
+        {
+          "opening_balance": 145624,
+          "gross_return": 8088,
+          "year": 2028,
+          "net_return": 6228,
+          "fees": 1860,
+          "closing_balance": 151852
+        },
+        {
+          "opening_balance": 151852,
+          "gross_return": 8468,
+          "year": 2029,
+          "net_return": 6522,
+          "fees": 1946,
+          "closing_balance": 158374
+        },
+        {
+          "opening_balance": 158374,
+          "gross_return": 8868,
+          "year": 2030,
+          "net_return": 6831,
+          "fees": 2037,
+          "closing_balance": 165206
+        },
+        {
+          "opening_balance": 165206,
+          "gross_return": 9287,
+          "year": 2031,
+          "net_return": 7155,
+          "fees": 2132,
+          "closing_balance": 172361
+        },
+        {
+          "opening_balance": 172361,
+          "gross_return": 9728,
+          "year": 2032,
+          "net_return": 7496,
+          "fees": 2232,
+          "closing_balance": 179857
+        },
+        {
+          "opening_balance": 179857,
+          "gross_return": 10190,
+          "year": 2033,
+          "net_return": 7853,
+          "fees": 2337,
+          "closing_balance": 187710
+        },
+        {
+          "opening_balance": 187710,
+          "gross_return": 10676,
+          "year": 2034,
+          "net_return": 8228,
+          "fees": 2447,
+          "closing_balance": 195938
+        },
+        {
+          "opening_balance": 195938,
+          "gross_return": 11186,
+          "year": 2035,
+          "net_return": 8623,
+          "fees": 2563,
+          "closing_balance": 204561
+        },
+        {
+          "opening_balance": 204561,
+          "gross_return": 11721,
+          "year": 2036,
+          "net_return": 9037,
+          "fees": 2685,
+          "closing_balance": 213597
+        },
+        {
+          "opening_balance": 213597,
+          "gross_return": 12284,
+          "year": 2037,
+          "net_return": 9471,
+          "fees": 2812,
+          "closing_balance": 223069
+        },
+        {
+          "opening_balance": 223069,
+          "gross_return": 12875,
+          "year": 2038,
+          "net_return": 9928,
+          "fees": 2947,
+          "closing_balance": 232997
+        },
+        {
+          "opening_balance": 232997,
+          "gross_return": 13496,
+          "year": 2039,
+          "net_return": 10408,
+          "fees": 3088,
+          "closing_balance": 243405
+        },
+        {
+          "opening_balance": 243405,
+          "gross_return": 14148,
+          "year": 2040,
+          "net_return": 10912,
+          "fees": 3236,
+          "closing_balance": 254316
+        },
+        {
+          "opening_balance": 254316,
+          "gross_return": 14833,
+          "year": 2041,
+          "net_return": 11441,
+          "fees": 3392,
+          "closing_balance": 265758
+        },
+        {
+          "opening_balance": 265758,
+          "gross_return": 15553,
+          "year": 2042,
+          "net_return": 11997,
+          "fees": 3555,
+          "closing_balance": 277755
+        },
+        {
+          "opening_balance": 277755,
+          "gross_return": 16309,
+          "year": 2043,
+          "net_return": 12582,
+          "fees": 3727,
+          "closing_balance": 290337
+        },
+        {
+          "opening_balance": 290337,
+          "gross_return": 17104,
+          "year": 2044,
+          "net_return": 13196,
+          "fees": 3908,
+          "closing_balance": 303533
+        },
+        {
+          "opening_balance": 303533,
+          "gross_return": 17939,
+          "year": 2045,
+          "net_return": 13841,
+          "fees": 4097,
+          "closing_balance": 317374
+        },
+        {
+          "opening_balance": 317374,
+          "gross_return": 18816,
+          "year": 2046,
+          "net_return": 14520,
+          "fees": 4297,
+          "closing_balance": 331894
+        }
+      ]
+    },
+    "id": "90dcc2a9-8c77-43a9-8053-ce0b4f5446dc"
+  }
+}
